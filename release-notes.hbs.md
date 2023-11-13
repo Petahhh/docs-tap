@@ -252,6 +252,23 @@ This release includes the following changes, listed by component and area.
 
 - Minikube support has been removed.
 
+#### <a id="1-7-0-cnr-br"></a> v1.7.0 Breaking changes: Cloud Native Runtimes
+
+- Upgrading web workloads to 1.7.0 will result in downtime effecting customers who have not customized the default workload type. You will not be impacted by this downtime upgrade if the below mitigation configuration was already in place before upgrading.
+
+Mitigation:
+- Update your tap-values file
+- Add `contour.envoy.workload.type` and set it to `DaemonSet`
+- Reapply your tap-values configuration
+
+Example yaml snippet for tap-values:
+```
+contour:
+  envoy:
+    workload:
+      type: DaemonSet
+```
+
 #### <a id="1-7-0-alv-br"></a> v1.7.0 Breaking changes: Application Live View
 
 - The `appliveview_connector.backend.sslDisabled` key has been removed and is replaced by
